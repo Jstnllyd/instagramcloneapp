@@ -104,12 +104,12 @@ class AccountSettingsActivity : AppCompatActivity()
             else -> {
                 val usersRef = FirebaseDatabase.getInstance().reference.child("Users")
 
-                val userMap = HashMap<String, Any>()
-                userMap["fullname"] = full_name_profile_frag.text.toString().toLowerCase()
-                userMap["username"] = username_profile_frag.text.toString().toLowerCase()
-                userMap["bio"] = bio_profile_frag.text.toString().toLowerCase()
+                val postMap = HashMap<String, Any>()
+                postMap["fullname"] = full_name_profile_frag.text.toString().toLowerCase()
+                postMap["username"] = username_profile_frag.text.toString().toLowerCase()
+                postMap["bio"] = bio_profile_frag.text.toString().toLowerCase()
 
-                usersRef.child(firebaseUser.uid).updateChildren(userMap)
+                usersRef.child(firebaseUser.uid).updateChildren(postMap)
 
                 Toast.makeText(this, "Account Information has been updated successfully.", Toast.LENGTH_LONG).show()
 
@@ -185,13 +185,13 @@ class AccountSettingsActivity : AppCompatActivity()
 
                         val ref = FirebaseDatabase.getInstance().reference.child("Users")
 
-                        val userMap = HashMap<String, Any>()
-                        userMap["fullname"] = full_name_profile_frag.text.toString().toLowerCase()
-                        userMap["username"] = username_profile_frag.text.toString().toLowerCase()
-                        userMap["bio"] = bio_profile_frag.text.toString().toLowerCase()
-                        userMap["image"] = myUrl
+                        val postMap = HashMap<String, Any>()
+                        postMap["fullname"] = full_name_profile_frag.text.toString().toLowerCase()
+                        postMap["username"] = username_profile_frag.text.toString().toLowerCase()
+                        postMap["bio"] = bio_profile_frag.text.toString().toLowerCase()
+                        postMap["image"] = myUrl
 
-                        ref.child(firebaseUser.uid).updateChildren(userMap)
+                        ref.child(firebaseUser.uid).updateChildren(postMap)
 
                         Toast.makeText(this, "Account Information has been updated successfully.", Toast.LENGTH_LONG).show()
 

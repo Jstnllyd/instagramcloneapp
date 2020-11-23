@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.instagramcloneapp"
-        minSdkVersion 28
+        minSdkVersion 25
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -23,7 +23,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'progu ard-rules.pro'
         }
     }
     compileOptions {

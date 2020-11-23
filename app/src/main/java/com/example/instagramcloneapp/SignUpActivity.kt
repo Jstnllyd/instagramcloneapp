@@ -80,20 +80,25 @@ class SignUpActivity : AppCompatActivity() {
         val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
         val usersRef: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
 
-        val userMap = HashMap<String, Any>()
-        userMap["uid"] = currentUserID
-        userMap["fullname"] = fullName.toLowerCase()
-        userMap["username"] = userName.toLowerCase()
-        userMap["email"] = email
-        userMap["bio"] = "Kapoy na skwela"
-        userMap["image"] = "https://firebasestorage.googleapis.com/v0/b/instagram-clone-app-67589.appspot.com/o/Default%20Images%2Fprofile.png?alt=media&token=2a14e9cb-8db3-4662-9cc9-7f8459dcbd83"
+        val postMap = HashMap<String, Any>()
+        postMap["uid"] = currentUserID
+        postMap["fullname"] = fullName.toLowerCase()
+        postMap["username"] = userName.toLowerCase()
+        postMap["email"] = email
+        postMap["bio"] = "Kapoy na skwela"
+        postMap["image"] = "https://firebasestorage.googleapis.com/v0/b/instagram-clone-app-67589.appspot.com/o/Default%20Images%2Fprofile.png?alt=media&token=2a14e9cb-8db3-4662-9cc9-7f8459dcbd83"
 
-        usersRef.child(currentUserID).setValue(userMap)
+        usersRef.child(currentUserID).setValue(postMap)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful)
                 {
                     progressDialog.dismiss()
                     Toast.makeText(this, "Account has been created successfully.", Toast.LENGTH_LONG).show()
+
+                    FirebaseDatabase.getInstance().reference
+                        .child("Follow").child(currentUserID)
+                        .child("Following").child(currentUserID)
+                        .setValue(true)
 
                     val intent = Intent(this@SignUpActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
